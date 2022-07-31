@@ -23,7 +23,6 @@
  
 <svg width="0" height="0" class="chart"></svg>
 <div id="tooltip"></div>
-
 <div id="countries" width="1800" height="600">
     <p>when we look into the recession from 2007 to 2009, we may would like to check which income groups had more effort caused by this recession:</p>
     <ul>
@@ -59,6 +58,8 @@ var data_income = [
 var x = d3.scaleBand().domain(["High income","Upper middle income","Lower middle income","Low income"]).range([0,1000])
 var y = d3.scaleLinear().domain([0,48]).range([400,0])
 
+var tooltip = d3.select("#tooltip")
+
 d3.select('.country')
 .append("g")
 .attr("transform", "translate(" + 200 + "," + 100 + ")")
@@ -72,9 +73,7 @@ d3.select('.country')
 .attr("height", function(d) {return y(48-d[1])})
 .on("mouseover", function(d,i){
     tooltip.style("opacity",1)
-    .style("left",(d3.event.pageX)+"px")
-    .style("top",(d3.event.pageY)+"px")
-    .html("GDP(Trillion$) in 2008: "+d[1] )
+
 })
 .on("mousemove", function(d,i) {
     tooltip
